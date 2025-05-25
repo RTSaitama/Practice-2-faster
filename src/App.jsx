@@ -23,8 +23,6 @@ const products = productsFromServer.map(product => {
 export const DEFAULT = null;
 export const COLUMNS = ['ID', 'Product', 'Category', 'User'];
 
-console.log(products)
-
 export const App = () => {
   const [query, setQuery] = useState('');
   const [selectedPerson, setSelectedPerson] = useState(DEFAULT);
