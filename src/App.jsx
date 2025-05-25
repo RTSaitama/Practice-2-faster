@@ -52,7 +52,7 @@ export const App = () => {
     }
   }
 
-  let filtered = products;
+  let filtered = [...products]
 
   if (query) {
     filtered = filtered.filter(product => {
@@ -60,6 +60,12 @@ export const App = () => {
       const normilizedProduct = product.name.toLowerCase().trim();
 
       return normilizedProduct.includes(normilizedQuery)
+    })
+  }
+
+  if (selectedPerson) {
+    filtered = filtered.filter(product => {
+      return product.owner.id === selectedPerson.id;
     })
   }
 
