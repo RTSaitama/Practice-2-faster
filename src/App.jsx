@@ -52,7 +52,7 @@ export const App = () => {
     }
   }
 
-  let filtered = [...products]
+  let filtered = [...products];
 
   if (query) {
     filtered = filtered.filter(product => {
@@ -99,21 +99,20 @@ export const App = () => {
     return reversed ? -result : result
   })
 
+
   const sortHandler = (column) => {
-    if (sortType !== column) {
-      setSortType(column)
-    }
-
     if (sortType === column) {
-      setReversed(prev => !prev)
-    }
-
-    if (sortType === column && reversed) {
-      setSortType(DEFAULT)
+      if (!reversed) {
+        setReversed(true)
+      } else {
+        setSortType(DEFAULT)
+        setReversed(false)
+      }
+    } else {
+      setSortType(column)
       setReversed(false)
     }
   }
-
 
   return (
     <div className="section">
@@ -241,7 +240,7 @@ export const App = () => {
                           >
                             <i data-cy="SortIcon" className={
                               classNames("fas ", {
-                                'fa-sort' : !reversed,
+                                'fa-sort': !reversed,
                                 'fa-sort-up': !reversed && sortType === column,
                                 'fa-sort-down': reversed,
                               })
@@ -262,7 +261,7 @@ export const App = () => {
             </thead>
 
             <tbody>
-              {sorted.length ? filtered.map(product => {
+              {sorted.length ? sorted.map(product => {
                 return (
                   <tr key={product.id} data-cy="Product">
                     <td className="has-text-weight-bold" data-cy="ProductId">
